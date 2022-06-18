@@ -1,0 +1,30 @@
+body{
+    background-image: url("../assets/drumkit.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 300px auto;
+}
+#drum{
+    text-align: center;
+    padding: 200px 0;
+    height: 90vh;
+}
+.item{
+    height: 100px;
+    width: 100px;
+    border: 5px ridge #ff7795;
+    border-radius: 10%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    margin: 10px 10px;
+}
+.letters{
+    color: white;
+    font-size: 3rem;
+    margin: 0.5rem 0;
+}
+.sound{
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    font-weight:bold;
+}

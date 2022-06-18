@@ -1,0 +1,36 @@
+body{
+    background-color: #e5e5f7;
+    background-image:  radial-gradient(#23314b 2px, transparent 2px), radial-gradient(#23314b 2px, #e5e5f7 2px);
+    background-size: 80px 80px;
+    background-position: 0 0,40px 40px;
+}
+#albumList{
+    min-height: 100vh;
+}
+#albumList .row{
+    padding: 100px 0 0;
+}
+#gallery{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.u_img{
+    width: 280px;
+    height: 250px;
+    padding:3%;
+}
+.u_img img{
+    max-width: 250px;
+    max-height: 230px;
+    object-fit: contain;
+}
+#previewbg{
+    z-index: 100;
+}
+#preview{
+    padding: 60px 0 0;
+}
+#preview, #wrap{
+    z-index: 120;
+}

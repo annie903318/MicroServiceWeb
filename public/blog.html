@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Daily Life-論壇</title>
+    <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style-starter.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="./css/util.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a id="navbar-brand" class="navbar-brand" href="../public/index.html"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto col-12 justify-content-end">
+            <li class="nav-item">
+                <a id="todolist" class="nav-link"  href="../public/todolist.html">代辦事項</a>
+            </li>
+            <li class="nav-item">
+                <a id="album" class="nav-link"  href="../public/album.html">相簿</a>
+            </li>
+            <li class="nav-item">
+                <a id="blog" class="nav-link"  href="../public/blog.html">論壇</a>
+            </li>
+            <li class="nav-item">
+                <a id="drumkit" class="nav-link"  href="../public/drumkit.html">打擊樂模擬器</a>
+            </li>
+            <li class="nav-item">
+                <a id="changePass" class="nav-link"  href="../public/changePass.html">修改密碼</a>
+            </li>
+
+            <li class="nav-item">
+                <p id="username">使用者:</p>
+            </li>
+            <li class="nav-item">
+                <a id="logout" class="nav-link" onclick="logout()">登出</a>
+            </li>            
+            <li class="nav-item">
+                <a id="login" class="nav-link" href="../public/login.html">登入</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <!-- //header -->
+
+    <div class="container titleoutside">
+        <div class="form-inline justify-content-between">
+            <button class="btn btn-primary justify-content-end" type="submit"
+                onclick="location.href='../public/addArticle.html'">新增文章</button>
+            <div class="d-flex justify-content-end">
+                <label class="pr-2">分類看版</label>
+                <select id="type" class="form-control" onchange="changeType()">
+                    <option value="全部">全部</option>
+                    <option value="有趣">有趣</option>
+                    <option value="心情">心情</option>
+                    <option value="影劇">影劇</option>
+                    <option value="其他">其他</option>
+                </select>
+                <form class="pl-3">
+                    <input class="form-control" id="title" type="search" placeholder="Title" aria-label="Search">
+                    <button class="btn btn-info" type="button" onclick="search()">搜尋</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container table100 ver2 m-b-110 mt-4">
+        <div class="table100-head">
+            <table>
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">標題</th>
+                        <th class="cell100 column2">主題</th>
+                        <th class="cell100 column2">愛心</th>
+                        <th class="cell100 column2">回覆</th>
+                        <th class="cell100 column2">發布人</th>
+                        <th class="cell100 column2">日期</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table100-body js-pscroll">
+            <table>
+                <tbody id="article"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <section class="w3l-footer-16">
+        <div class="w3l-footer-16-main footer_space">
+            <div class="container">
+                <div class="d-flex below-section justify-content-between align-items-center pt-3">
+                    <div class="columns text-lg-left">
+                        <p class="copy-text">@ 2022 Daily Life. All rights reserved. Design by s1311034013
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span aria-hidden="true">↑</span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!-- //common jquery plugin -->   
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("nav").addClass("nav-fixed");
+            } else {
+                $("nav").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //Js scripts -->
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script src="./vendor/bootstrap/js/popper.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./vendor/select2/select2.min.js"></script>
+    <script src="./vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+    <script src="./javascripts/header.js"></script>
+    <script src="./javascripts/blog.js"></script>
+
+</body>
+
+</html>

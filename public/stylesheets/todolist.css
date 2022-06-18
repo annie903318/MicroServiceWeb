@@ -1,0 +1,27 @@
+body{
+    background-color: #df9a9a!important;
+}
+#inp{
+    text-align: center;
+    padding: 130px 0 30px;
+}
+input,button{
+    font-size: 30px;
+}
+#inbox{
+    max-width: 500px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow:  10px 10px 0 rgba(0,0,0,0.1);
+}
+.list{
+    padding: 20px;
+    align-items: center;
+    border-bottom: 1px solid #F1F1F1;
+}
+.item{
+    padding: 0 0 0 20px;
+    display: inline-block;
+    font-size: 20px;
+}
