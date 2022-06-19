@@ -1,8 +1,8 @@
 version: "3"
 services:
-       MicroServiceWeb:
-           container_name: MicroServiceWeb
-           image: MicroServiceWeb
+       microserviceweb:
+           container_name: microserviceweb
+           image: microserviceweb
            restart: always
            build: .
            ports:
