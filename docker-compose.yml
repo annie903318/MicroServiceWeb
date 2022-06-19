@@ -1,34 +1,18 @@
-version: '3.8'
+version: "3"
 services:
-  db:
-    image: mongo
+  microserviceweb:
+    container_name: microserviceweb
+    image: microserviceweb
     restart: always
+    build: .
     ports:
-      - 27017:27017
+      - "7500:7500"
+    links:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongo
     volumes:
-      - ./tmp/db:/data/db
-  web:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-  volumes:
-    - /app/node_modules
-    - ./:/app
-  ports:
-    - "5500:5500"
-  depends_on:
-    - db
-  environment:
-    MONGO_URI: mongodb://db:27017/demo
-  tty: true
-  stdin_open: true
-  command: >
-    /bin/sh -c '
-    while ! nc -z db 27017;
-    do
-      echo "waiting for database ...";
-      sleep 3;
-    done;
-    echo "db is ready!";
-    npm start;
-    '
+      - ./data:/data/db
+    ports:
+      - '27018:27017'
