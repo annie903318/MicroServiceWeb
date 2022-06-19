@@ -1,14 +1,23 @@
-version: '3.3'
+version: "3.4"
 
 services:
-  mongo:
-    image: mongo
-
-  mongoexpress:
-    image: mongo-express
+  nodejs_mongo_docker:
+    image: nodejs_mongo_docker
+    build: .
+    enviroment:
+      NODE_ENV: production
     ports:
-      - '8081:8081'
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
     links:
-      - mongo
-    environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+      - mongodb
+  mongodb:
+    image: mongodb:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:

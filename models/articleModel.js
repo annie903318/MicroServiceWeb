@@ -1,5 +1,5 @@
 var mongoose=require("mongoose");
-mongoose.connect("mongodb://localhost:27017/ch6",{useNewUrlParser:true});
+mongoose.connect("mongodb://mongodb:27017/ch6",{useNewUrlParser:true});
 
 var articleSchema=new mongoose.Schema({
     account:String,
