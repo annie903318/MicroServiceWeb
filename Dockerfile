@@ -1,7 +1,9 @@
-FROM node:latest
-WORKDIR '/app'
-COPY ./package.json ./app
+FROM node:8-alpine
+
+COPY . /workspace
+WORKDIR /workspace
 RUN npm install
-COPY . .
+
 EXPOSE 3000
-CMD [ "npm", "start" ]
+
+CMD npm start
