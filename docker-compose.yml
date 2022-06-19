@@ -7,3 +7,28 @@ services:
       - 27017:27017
     volumes:
       - ./tmp/data/db:/data/db
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+  volumes:
+    - ./:/app
+    - /app/node_modules
+  ports:
+    - "3000:3000"
+  depends_on:
+    - db
+  environment:
+    MONGO_URI: mongodb://db:27017/demo
+  tty: true
+  stdin_open: true
+  command: >
+   /bin/sh -c '
+   while ! nc -z db 27017;
+   do
+     echo "waiting for database ...";
+     sleep 3;
+   done;
+   echo "db is ready!";
+   npm start;
+   '

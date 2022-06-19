@@ -1,9 +1,8 @@
-FROM node:8-alpine
+FROM node:latest
 
-COPY . /workspace
-WORKDIR /workspace
-RUN npm install && npm cache clean --force
-
+WORKDIR '/app'
+COPY ./package.json ./app
+RUN npm install
+COPY . .
 EXPOSE 3000
-
-CMD npm start
+CMD [ "npm", "start" ]
