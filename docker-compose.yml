@@ -1,23 +1,18 @@
-version: "3.4"
-
+version: "3"
 services:
-  nodejs_mongo_docker:
-    image: nodejs_mongo_docker
-    build: .
-    environment:
-      NODE_ENV: production
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/usr/src/app
-    links:
-      - mongodb
-  mongodb:
-    image: mongodb:latest
-    ports:
-      - 27017:27017
-    volumes:
-      - data:/data/db
-
-volumes:
-  data:
+       MicroServiceWeb:
+           container_name: MicroServiceWeb
+           image: MicroServiceWeb
+           restart: always
+           build: .
+           ports:
+             - "3000:3000"
+           links:
+             - mongodb
+       mongodb:
+             container_name: mongodb
+             image: mongo
+             volumes:
+               - ./data:/data/db
+             ports:
+               - '27018:27017'
